@@ -1,0 +1,53 @@
+{
+  "mappings": {
+    "properties": {
+      "description": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomplete": {
+            "type": "text",
+            "analyzer": "autocomplete"
+          }
+        }
+      },
+
+      "title": {
+        "type": "text",
+        "analyzer": "autocomplete",
+        "search_analyzer": "standard",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomplete": {
+            "type": "text",
+            "analyzer": "autocomplete"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "autocomplete": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase", "autocomplete_filter"]
+        }
+      }
+    }
+  }
+}

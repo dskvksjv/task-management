@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: task-management
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+    ports:
+      - "5332:5332"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
